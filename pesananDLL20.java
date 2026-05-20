@@ -30,26 +30,26 @@ public class pesananDLL20 {
         do {
             swapped = false;
             pesanan20 current = head;
-            while (current.next != null) {
+            while (current.next != null) { // selama ada yang dibandingkan
                 if (current.namaPesanan.compareToIgnoreCase(current.next.namaPesanan) > 0) {
                     // tukar data, bukan pointer
-                    int tempKode = current.kodePesanan;
+                    int tempKode = current.kodePesanan;   // simpan data current ke variabel sementara
                     String tempNama = current.namaPesanan;
                     int tempHarga = current.harga;
 
-                    current.kodePesanan = current.next.kodePesanan;
+                    current.kodePesanan = current.next.kodePesanan; // isi current dengan data next
                     current.namaPesanan = current.next.namaPesanan;
                     current.harga = current.next.harga;
 
-                    current.next.kodePesanan = tempKode;
+                    current.next.kodePesanan = tempKode; // isi next dengan data lama current (dari temp)
                     current.next.namaPesanan = tempNama;
                     current.next.harga = tempHarga;
 
-                    swapped = true;
+                    swapped = true; // tanda ada pertukaran (looping juga)
                 }
-                current = current.next;
+                current = current.next; // geser ke pasangan berikutnya
             }
-        } while (swapped);
+        } while (swapped); // ulangi pass sampai tidak ada pertukaran (sudah terurut)
     }
 
     // laporan pesanan
@@ -59,10 +59,10 @@ public class pesananDLL20 {
             return;
         }
 
-        sortByNama();
+        sortByNama(); // urutkan dulu sebelum dicetak
 
         pesanan20 current = head;
-        int total = 0;
+        int total = 0; // akumulator total pendapatan
         System.out.println("\n================================================");
         System.out.println("LAPORAN PESANAN (URUT NAMA PESANAN)");
         System.out.println("================================================");
@@ -70,8 +70,8 @@ public class pesananDLL20 {
         System.out.println("================================================");
         while (current != null) {
             System.out.printf("%-15d %-20s %-10d%n", current.kodePesanan, current.namaPesanan, current.harga);
-            total += current.harga;
-            current = current.next;
+            total += current.harga; // tambahkan harga tiap pesanan ke total
+            current = current.next; // lanjut ke pesanan berikutnya
         }
         System.out.println("================================================");
         System.out.println("TOTAL PENDAPATAN : Rp" + total);

@@ -1,4 +1,4 @@
-public class pembeli20 {
+public class pembeli20 { // cetakan untuk setiap pembeli yang masuk antrian
     int nomorAntrean;
     String namaPembeli;
     String noHp;
@@ -10,7 +10,7 @@ public class pembeli20 {
     
     }
 
-    // konstruktor berparameter
+    // konstruktor berparameter → dipakai saat membuat node baru dengan data langsung
     public pembeli20(int nomorAntrean, String namaPembeli, String noHp) {
         this.nomorAntrean = nomorAntrean;
         this.namaPembeli = namaPembeli;

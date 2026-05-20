@@ -3,8 +3,8 @@ import java.util.Scanner;
 public class main20 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        antreanDLL20 antrean = new antreanDLL20();
-        pesananDLL20 pesanan = new pesananDLL20();
+        antreanDLL20 antrean = new antreanDLL20(); // membuat DLL kosong untuk antrian pembeli
+        pesananDLL20 pesanan = new pesananDLL20(); // membuat DLL kosong untuk pesanan
 
         int pilihan;
         do {
@@ -15,9 +15,10 @@ public class main20 {
             System.out.println("2. Cetak Antrean");
             System.out.println("3. Hapus Antrean & Input Pesanan");
             System.out.println("4. Laporan Pesanan & Total Pendapatan");
+            System.out.println("5. Batalkan Antrean"); // modifikasi menambah menu batal antrean
             System.out.println("0. Keluar");
             System.out.print("Pilih menu : ");
-            pilihan = sc.nextInt();
+            pilihan = sc.nextInt(); // baca pilihan angka dari user
             sc.nextLine();
 
             switch(pilihan) {
@@ -37,7 +38,7 @@ public class main20 {
                     int nomorDipanggil = sc.nextInt();
                     sc.nextLine();
 
-                    pembeli20 pembeli = antrean.hapusAntrean(nomorDipanggil);
+                    pembeli20 pembeli = antrean.hapusAntrean(nomorDipanggil); // hapus dari antrian, simpan data pembeli yang dipanggil
                     if (pembeli != null) {
                         System.out.println("\nInput pesanan untuk " + pembeli.namaPembeli + ": ");
 
@@ -50,12 +51,19 @@ public class main20 {
                         int harga = sc.nextInt();
                         sc.nextLine();
 
-                        pesanan.tambahPesanan(kodePesanan, namaPesanan, harga);
+                        pesanan.tambahPesanan(kodePesanan, namaPesanan, harga); // simpan pesanan ke DLL pesanan
                         System.out.println(pembeli.namaPembeli + " telah memesan " + namaPesanan);
                     }
                     break;
                 case 4:
-                    pesanan.laporanPesanan();
+                    pesanan.laporanPesanan(); // cetak laporan semua pesanan + total pendapatan
+                    break;
+                case 5:
+                    antrean.cetakAntrean(); // tampilkan antrean dulu biar user tahu mau batalkan nomor berapa
+                    System.out.print("Masukkan nomor antrean yang ingin dibatalkan: ");
+                    int nomorBatal = sc.nextInt(); // membaca nomor antrean yang ingin dibatalkan
+                    sc.nextLine();
+                    antrean.batalAntrean(nomorBatal);
                     break;
                 case 0:
                     System.out.println("Terima kasih telah datang di Royal Delish.");
